@@ -9,7 +9,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   //site: process.env.PUBLIC_SITE_URL || 'https://visualboost.com',
   site: 'https://rvaldenegrof.github.io/VisualBoost/',
-  base: 'https://rvaldenegrof.github.io/VisualBoost/'
+  base: '/VisualBoost/'
 
   vite: {
     plugins: [tailwindcss()]
