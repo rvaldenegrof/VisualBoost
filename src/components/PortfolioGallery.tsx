@@ -59,6 +59,7 @@ export default function PortfolioGallery({ items }: Props) {
 									alt={item.alt}
 									width={800}
 									height={1000}
+									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 									loading="lazy"
 									decoding="async"
 									className="h-full w-full object-cover"

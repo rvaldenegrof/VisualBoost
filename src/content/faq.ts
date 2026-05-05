@@ -47,11 +47,11 @@ export const faqItems: FaqItem[] = [
 	{
 		question: '¿Qué pasa si necesito cancelar o reprogramar?',
 		answer:
-			'Comunica con la mayor anticipación posible. Las políticas de reprogramación y cancelación te las enviamos por escrito junto con la cotización.',
+			'Comunícate con la mayor anticipación posible. Las políticas de reprogramación y cancelación te las enviamos por escrito junto con la cotización.',
 	},
 	{
 		question: '¿Ofrecen servicio fuera de mi ciudad?',
 		answer:
-			'Sí, según tipo de proyecto: sesiones remotas con envío de productos, redacción de brief en línea y envío de archivos digitales. Consulta disponibilidad en contacto.',
+			'Sí, según el tipo de proyecto: sesiones remotas con envío de productos, elaboración del brief en línea y envío de archivos digitales. Consulta disponibilidad en la página de contacto.',
 	},
 ];
