@@ -1,0 +1,144 @@
+---
+import { formspreeAction } from '../config/site';
+
+const action = formspreeAction();
+const planOptions = [
+	{ value: '', label: 'Selecciona un plan (opcional)' },
+	{ value: 'basico', label: 'Básico' },
+	{ value: 'estandar', label: 'Estándar' },
+	{ value: 'premium', label: 'Premium' },
+	{ value: 'personalizado', label: 'Cotización personalizada' },
+];
+---
+
+{
+	action ? (
+		<form
+			action={action}
+			method="POST"
+			class="space-y-6"
+			name="contact"
+			aria-label="Formulario de contacto"
+		>
+			<input type="hidden" name="_subject" value="Nuevo mensaje desde VisualBoost" />
+			<div class="grid gap-6 sm:grid-cols-2">
+				<div class="sm:col-span-1">
+					<label for="name" class="block text-sm font-medium text-ink">
+						Nombre <span class="text-accent">*</span>
+					</label>
+					<input
+						id="name"
+						name="name"
+						type="text"
+						required
+						autocomplete="name"
+						class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+					/>
+				</div>
+				<div class="sm:col-span-1">
+					<label for="email" class="block text-sm font-medium text-ink">
+						Correo electrónico <span class="text-accent">*</span>
+					</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						required
+						autocomplete="email"
+						class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+					/>
+				</div>
+			</div>
+			<div>
+				<label for="phone" class="block text-sm font-medium text-ink">
+					Teléfono / WhatsApp
+				</label>
+				<input
+					id="phone"
+					name="phone"
+					type="tel"
+					autocomplete="tel"
+					class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+				/>
+			</div>
+			<div>
+				<label for="business" class="block text-sm font-medium text-ink">
+					Empresa o marca
+				</label>
+				<input
+					id="business"
+					name="business"
+					type="text"
+					autocomplete="organization"
+					class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+				/>
+			</div>
+			<div>
+				<label for="plan" class="block text-sm font-medium text-ink">
+					Plan de interés
+				</label>
+				<select
+					id="plan"
+					name="plan"
+					class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+				>
+					{planOptions.map((o) => (
+						<option value={o.value}>
+							{o.label}
+						</option>
+					))}
+				</select>
+			</div>
+			<div>
+				<label for="message" class="block text-sm font-medium text-ink">
+					Cuéntanos tu necesidad <span class="text-accent">*</span>
+				</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="5"
+					required
+					class="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+				/>
+			</div>
+			<div class="flex items-start gap-3">
+				<input
+					id="consent"
+					name="consent"
+					type="checkbox"
+					required
+					class="mt-1 h-4 w-4 rounded border-border text-accent focus:ring-accent"
+				/>
+				<label for="consent" class="text-sm text-ink-muted">
+					Acepto el tratamiento de mis datos para responder a esta consulta, según la{' '}
+					<a href="/privacidad" class="font-medium text-accent underline hover:no-underline">
+						información de privacidad
+					</a>
+					. <span class="text-accent">*</span>
+				</label>
+			</div>
+			<button
+				type="submit"
+				class="w-full rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			>
+				Enviar mensaje
+			</button>
+		</form>
+	) : (
+		<div
+			class="rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950"
+			role="status"
+		>
+			<p class="font-semibold">Configura el envío del formulario</p>
+			<p class="mt-2 text-sm">
+				Crea un formulario en{' '}
+				<a href="https://formspree.io" class="underline" target="_blank" rel="noopener noreferrer">
+					Formspree
+				</a>{' '}
+				y añade <code class="rounded bg-white/80 px-1">PUBLIC_FORMSPREE_ID</code> en tu archivo{' '}
+				<code class="rounded bg-white/80 px-1">.env</code>. Mientras tanto, usa WhatsApp o el enlace
+				para agendar.
+			</p>
+		</div>
+	)
+}

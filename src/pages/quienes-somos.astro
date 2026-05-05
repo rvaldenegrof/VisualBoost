@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+	title="Quiénes somos"
+	description="Conoce VisualBoost: contenido visual orientado a ventas para emprendedores y pymes, con lenguaje simple y foco en resultados."
+>
+	<div class="mx-auto max-w-3xl px-4 py-14 md:px-6 md:py-20">
+		<h1 class="text-4xl font-bold tracking-tight text-ink">Quiénes somos</h1>
+		<p class="mt-4 text-lg text-ink-muted">
+			{siteConfig.name} nace para resolver un problema común: tener “buenas fotos” que no traducen en más ventas.
+		</p>
+
+		<div class="mt-10 max-w-none space-y-6 text-ink-muted">
+			<h2 class="text-xl font-semibold text-ink">Nuestra propuesta</h2>
+			<p class="mt-3 text-ink-muted">
+				Ayudamos a emprendedores y pymes a vender más a través de contenido visual <strong class="text-ink">estratégico</strong>, no solo estético. Eso significa pensar en quién compra, qué duda tiene antes de escribirte y cómo tu imagen puede responder en segundos.
+			</p>
+
+			<h2 class="mt-10 text-xl font-semibold text-ink">Cómo trabajamos</h2>
+			<p class="mt-3 text-ink-muted">
+				Usamos un lenguaje simple, sin tecnicismos innecesarios. Te contamos qué vamos a producir, para qué canal y qué resultado buscamos (más consultas, más claridad de oferta, más confianza). Las entregas suelen estar listas en <strong class="text-ink">48 a 72 horas</strong> según el proyecto.
+			</p>
+
+			<h2 class="mt-10 text-xl font-semibold text-ink">A quién acompañamos</h2>
+			<ul class="mt-3 list-disc space-y-2 pl-5 text-ink-muted">
+				<li>Emprendedores con o sin tienda física.</li>
+				<li>Pymes que venden por Instagram, TikTok o marketplaces.</li>
+				<li>Negocios locales que están creciendo y necesitan orden en su comunicación visual.</li>
+			</ul>
+
+			<h2 class="mt-10 text-xl font-semibold text-ink">Qué puedes esperar</h2>
+			<p class="mt-3 text-ink-muted">
+				Sesiones de captura al mes (según tu plan), un banco de contenido para no quedarte sin publicaciones y archivos listos para publicar en el formato correcto. Si quieres ver ejemplos, visita <a href="/trabajos" class="font-medium text-accent underline hover:no-underline">nuestros trabajos</a>.
+			</p>
+		</div>
+
+		<div class="mt-12 flex flex-wrap gap-4">
+			<Button href="/contacto">Solicitar cotización</Button>
+			<Button href="/planes" variant="secondary">Ver planes</Button>
+		</div>
+	</div>
+</Layout>

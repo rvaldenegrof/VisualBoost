@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+
+@theme {
+	--font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+	--color-surface: #fafaf8;
+	--color-surface-elevated: #ffffff;
+	--color-ink: #142018;
+	--color-ink-muted: #3d4a42;
+	--color-accent: #0f4d44;
+	--color-accent-hover: #0a3630;
+	--color-accent-soft: #e8f2f0;
+	--color-border: #e2e8e4;
+
+	--shadow-soft: 0 1px 3px rgb(20 32 24 / 0.06), 0 8px 24px rgb(20 32 24 / 0.06);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-surface text-ink font-sans antialiased text-base leading-relaxed;
+	}
+
+	:focus-visible {
+		@apply outline-2 outline-offset-2 outline-accent;
+	}
+}
