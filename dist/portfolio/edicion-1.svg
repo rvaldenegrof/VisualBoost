@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-hidden="true">
+  <rect width="800" height="1000" fill="#fafaf8"/>
+  <g opacity="0.9">
+    <rect x="140" y="180" width="170" height="170" fill="#e8f2f0"/>
+    <rect x="315" y="180" width="170" height="170" fill="#dcebe8"/>
+    <rect x="490" y="180" width="170" height="170" fill="#c9ddd8"/>
+    <rect x="140" y="355" width="170" height="170" fill="#c9ddd8"/>
+    <rect x="315" y="355" width="170" height="170" fill="#0f4d44" opacity="0.35"/>
+    <rect x="490" y="355" width="170" height="170" fill="#e8f2f0"/>
+  </g>
+  <text x="400" y="620" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#142018">Edición · feed</text>
+</svg>

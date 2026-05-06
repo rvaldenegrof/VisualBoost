@@ -1,6 +1,8 @@
 # VisualBoost
 
-Sitio estático de marketing para **VisualBoost** (Astro, TypeScript, Tailwind CSS, isla React para la galería de trabajos). Contenido en **español de Chile** (`lang="es-CL"`); los montos de planes se expresan en **pesos chilenos (CLP)**.
+Sitio de marketing con **Vite**, **React**, **TypeScript** y **Tailwind CSS v4**. Contenido en español de Chile (`lang="es-CL"`); montos en **CLP**.
+
+El proyecto está configurado para **GitHub Pages** con `base: '/VisualBoost/'` (subdirectorio del repositorio). En desarrollo abre: `http://localhost:5173/VisualBoost/`.
 
 ## Desarrollo
 
@@ -16,25 +18,26 @@ npm run build
 npm run preview
 ```
 
+El script `build` copia `index.html` a `404.html` para que las rutas del SPA funcionen al recargar o al abrir enlaces directos en GitHub Pages.
+
 ## Variables de entorno
 
-Copiá `.env.example` a `.env` y completá:
+Copia `.env.example` a `.env`:
 
 | Variable | Uso |
 |----------|-----|
-| `PUBLIC_SITE_URL` | URL canónica (Open Graph, `astro.config` vía `process.env` en build) |
-| `PUBLIC_FORMSPREE_ID` | ID del formulario en [Formspree](https://formspree.io). Sin esto, en contacto se muestra un aviso y el formulario no envía. |
-| `PUBLIC_WHATSAPP_NUMBER` | Código país + número, sin `+` ni espacios (Chile: prefijo `56`, ej. `56912345678`). |
-| `PUBLIC_SCHEDULE_URL` | Enlace a Calendly, Google Appointment o similar para “Agendar reunión”. |
+| `VITE_SITE_URL` | URL canónica sin barra final (ej. `https://usuario.github.io/VisualBoost`) |
+| `VITE_FORMSPREE_ID` | ID del formulario en [Formspree](https://formspree.io) |
+| `VITE_WHATSAPP_NUMBER` | Código país + número (Chile: `56…`) |
+| `VITE_SCHEDULE_URL` | Calendly u otro agendador |
 
-**Chat (Crisp, Tawk, etc.):** no se incluye script por defecto. Añadí el snippet del proveedor al final de `src/layouts/Layout.astro` (antes de `</body>`) cuando quieras activarlo.
+Chat de terceros (Crisp, Tawk): añade el script al final de `index.html` o monta un componente cuando lo necesites.
+
+## Contenido editable
+
+- FAQ: `src/content/faq.ts`
+- Portafolio: `src/content/portfolio.ts`
 
 ## Despliegue
 
-Generá `dist/` con `npm run build` y publicá en **Vercel**, **Netlify** o cualquier hosting estático. Asegurá **HTTPS** en producción.
-
-## Contenido
-
-- Textos y FAQ: `src/content/faq.ts`
-- Portafolio (categorías e imágenes): `src/content/portfolio.ts`. Por defecto se usan fotografías remotas de ejemplo (Unsplash); puedes sustituirlas por URLs propias o archivos en `public/portfolio/`.
-- Marca, email y fallbacks: `src/config/site.ts` y variables `PUBLIC_*`
+El workflow `.github/workflows/deploy.yml` ejecuta `npm ci` y `npm run build`, y publica la carpeta `dist/` en GitHub Pages.

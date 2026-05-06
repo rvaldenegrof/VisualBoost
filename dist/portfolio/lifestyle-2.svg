@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-hidden="true">
+  <rect width="800" height="1000" fill="#eae8e4"/>
+  <rect x="280" y="220" width="240" height="520" rx="12" fill="#142018" opacity="0.08"/>
+  <rect x="340" y="300" width="120" height="180" rx="6" fill="#0f4d44" opacity="0.4"/>
+  <text x="400" y="860" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#142018">Lifestyle · moda</text>
+</svg>

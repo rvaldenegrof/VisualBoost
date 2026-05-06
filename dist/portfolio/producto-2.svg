@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-hidden="true">
+  <rect width="800" height="1000" fill="#eef6f4"/>
+  <rect x="160" y="200" width="480" height="560" rx="8" fill="#d4e5e1"/>
+  <path d="M280 520 L520 520 L480 720 L320 720 Z" fill="#0f4d44" opacity="0.25"/>
+  <text x="400" y="880" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#0f4d44">Producto · textil</text>
+</svg>
