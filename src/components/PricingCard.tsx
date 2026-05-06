@@ -1,61 +1,79 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-type Props = {
-	name: string;
-	price: string;
-	description: string;
-	features: string[];
-	highlighted?: boolean;
-	ctaTo: string;
-	planId: string;
-};
+interface PricingCardProps {
+  name: string;
+  price: string;
+  description: string;
+  period: string;
+  features: string[];
+  popular?: boolean;
+}
 
-export function PricingCard({
-	name,
-	price,
-	description,
-	features,
-	highlighted = false,
-	ctaTo,
-	planId,
-}: Props) {
-	return (
-		<article
-			className={`flex flex-col rounded-2xl border p-6 md:p-8 ${
-				highlighted
-					? 'border-accent bg-accent-soft shadow-soft ring-2 ring-accent/20'
-					: 'border-border bg-surface-elevated shadow-soft'
-			}`}
-			aria-labelledby={`plan-${planId}`}
-		>
-			<h3 id={`plan-${planId}`} className="text-lg font-bold text-ink">
-				{name}
-			</h3>
-			<p className="mt-1 text-sm text-ink-muted">{description}</p>
-			<p className="mt-4">
-				<span className="text-3xl font-bold tracking-tight text-ink">{price}</span>
-				<span className="text-sm text-ink-muted"> / mes · CLP</span>
-			</p>
-			<ul className="mt-6 flex-1 space-y-3 text-sm text-ink-muted">
-				{features.map((f) => (
-					<li key={f} className="flex gap-2">
-						<span className="mt-0.5 text-accent" aria-hidden="true">
-							✓
-						</span>
-						<span>{f}</span>
-					</li>
-				))}
-			</ul>
-			<Link
-				to={ctaTo}
-				className={`mt-8 inline-flex w-full justify-center rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors focus-visible:outline-offset-2 ${
-					highlighted
-						? 'bg-accent text-white hover:bg-accent-hover'
-						: 'border border-border bg-white text-ink hover:border-accent/40 hover:bg-accent-soft'
-				}`}
-			>
-				Elegir plan
-			</Link>
-		</article>
-	);
+export default function PricingCard({
+  name,
+  price,
+  description,
+  period,
+  features,
+  popular = false,
+}: PricingCardProps) {
+  return (
+    <div
+      className={`rounded-2xl border transition-transform duration-300 hover:shadow-xl ${
+        popular
+          ? 'border-primary-600 bg-gradient-to-b from-primary-50 to-white shadow-lg scale-105'
+          : 'border-gray-200 bg-white hover:border-primary-300'
+      }`}
+    >
+      {popular && (
+        <div className="bg-gradient-to-r from-primary-600 to-accent-500 text-white py-2 text-center text-sm font-bold rounded-t-2xl">
+          ⭐ MÁS POPULAR
+        </div>
+      )}
+
+      <div className="p-8">
+        <h3 className="heading-sm mb-2">{name}</h3>
+        <p className="text-muted text-sm mb-6">{description}</p>
+
+        <div className="mb-6">
+          <div className="flex items-baseline gap-1 mb-2">
+            <span className="text-4xl font-bold text-gray-900">{price}</span>
+            <span className="text-gray-600">/ {period}</span>
+          </div>
+        </div>
+
+        <button
+          className={`w-full py-3 rounded-lg font-semibold mb-8 transition-colors duration-200 ${
+            popular
+              ? 'btn-primary'
+              : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+          }`}
+        >
+          Solicitar Plan
+        </button>
+
+        <div className="space-y-3">
+          <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+            Incluye
+          </p>
+          {features.map((feature, index) => (
+            <div key={index} className="flex items-start gap-3">
+              <svg
+                className="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-gray-700 text-sm">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }

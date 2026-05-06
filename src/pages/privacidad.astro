@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Política de Privacidad - VisualBoost">
+  <Header client:load />
+  
+  <main>
+    <div class="pt-32 section-padding">
+      <div class="container-max max-w-3xl">
+        <h1 class="heading-lg mb-8">Política de Privacidad</h1>
+        
+        <div class="prose prose-sm max-w-none">
+          <h2 class="heading-md mt-8 mb-4">1. Información que Recopilamos</h2>
+          <p class="text-muted mb-4">
+            Recopilamos información que nos proporciona voluntariamente a través de formularios de contacto, incluyendo nombre, correo electrónico, teléfono y detalles sobre su negocio.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">2. Cómo Usamos tu Información</h2>
+          <p class="text-muted mb-4">
+            Utilizamos tu información para:
+          </p>
+          <ul class="list-disc list-inside text-muted space-y-2 mb-4">
+            <li>Responder a tus consultas</li>
+            <li>Enviar cotizaciones personalizadas</li>
+            <li>Proporcionar actualizaciones sobre nuestros servicios</li>
+            <li>Mejorar nuestro sitio web</li>
+          </ul>
+
+          <h2 class="heading-md mt-8 mb-4">3. Seguridad de Datos</h2>
+          <p class="text-muted mb-4">
+            Implementamos medidas de seguridad apropiadas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">4. Cookies</h2>
+          <p class="text-muted mb-4">
+            Nuestro sitio utiliza cookies para mejorar tu experiencia de navegación. Puedes controlar el uso de cookies mediante la configuración de tu navegador.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">5. Contacto</h2>
+          <p class="text-muted">
+            Si tienes preguntas sobre esta política de privacidad, contáctanos en contacto@visualboost.com
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load />
+</BaseLayout>

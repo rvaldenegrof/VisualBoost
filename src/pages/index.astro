@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import HeroSection from '../components/HeroSection';
+import ServicesSection from '../components/ServicesSection';
+import BenefitsSection from '../components/BenefitsSection';
+import PricingSection from '../components/PricingSection';
+import TestimonialSection from '../components/TestimonialSection';
+import FAQ from '../components/FAQ';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+
+import { SERVICES, PLANS, TESTIMONIALS, FAQ as FAQ_DATA } from '../data/services';
+---
+
+<BaseLayout title="VisualBoost - Contenido Estratégico para Ventas Digitales de Pymes">
+  <Header client:load />
+  
+  <main>
+    <HeroSection client:load />
+    <ServicesSection services={SERVICES} client:load />
+    <BenefitsSection client:load />
+    <PricingSection plans={PLANS} client:load />
+    <TestimonialSection testimonials={TESTIMONIALS} client:load />
+    <FAQ items={FAQ_DATA} client:load />
+  </main>
+
+  <Footer client:load />
+</BaseLayout>

@@ -1,115 +1,119 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+'use client';
 
-const links = [
-	{ to: '/', label: 'Inicio' },
-	{ to: '/quienes-somos', label: 'Quiénes somos' },
-	{ to: '/servicios', label: 'Servicios' },
-	{ to: '/trabajos', label: 'Trabajos' },
-	{ to: '/planes', label: 'Planes' },
-	{ to: '/faq', label: 'FAQ' },
-	{ to: '/contacto', label: 'Contacto' },
-] as const;
+import React, { useState, useEffect } from 'react';
 
-function isActive(pathname: string, href: string): boolean {
-	if (href === '/') return pathname === '/';
-	return pathname.startsWith(href);
+interface NavLink {
+  label: string;
+  href: string;
 }
 
-export function Header() {
-	const { pathname } = useLocation();
-	const [open, setOpen] = useState(false);
+const navLinks: NavLink[] = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Portafolio', href: '/portafolio' },
+  { label: 'Quiénes Somos', href: '/quienes-somos' },
+  { label: 'FAQ', href: '/#faq' },
+];
 
-	return (
-		<header className="sticky top-0 z-50 border-b border-border bg-surface-elevated/95 backdrop-blur supports-[backdrop-filter]:bg-surface-elevated/80">
-			<div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-				<Link to="/" className="group flex items-center gap-2 rounded-md focus-visible:outline-offset-4">
-					<span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
-						VB
-					</span>
-					<span className="font-semibold text-ink transition-colors group-hover:text-accent">VisualBoost</span>
-				</Link>
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-				<nav aria-label="Principal" className="hidden md:block">
-					<ul className="flex flex-wrap items-center gap-1 lg:gap-2">
-						{links.map(({ to, label }) => (
-							<li key={to}>
-								<Link
-									to={to}
-									className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-										isActive(pathname, to)
-											? 'bg-accent-soft text-accent'
-											: 'text-ink-muted hover:bg-accent-soft/60 hover:text-accent'
-									}`}
-									aria-current={isActive(pathname, to) ? 'page' : undefined}
-								>
-									{label}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</nav>
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
 
-				<Link
-					to="/contacto"
-					className="hidden rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-accent-hover md:inline-flex"
-				>
-					Solicitar cotización
-				</Link>
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-				<div className="relative md:hidden">
-					<button
-						type="button"
-						className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium text-ink"
-						aria-expanded={open}
-						aria-controls="mobile-nav"
-						onClick={() => setOpen(!open)}
-					>
-						Menú
-						<svg
-							className={`h-4 w-4 transition ${open ? 'rotate-180' : ''}`}
-							aria-hidden="true"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-						</svg>
-					</button>
-					{open && (
-						<div
-							id="mobile-nav"
-							className="absolute right-0 top-full z-50 mt-2 w-[min(100vw-2rem,18rem)] rounded-xl border border-border bg-surface-elevated p-2 shadow-soft"
-						>
-							<ul className="flex flex-col gap-1">
-								{links.map(({ to, label }) => (
-									<li key={to}>
-										<Link
-											to={to}
-											className={`block rounded-lg px-3 py-2 text-sm font-medium ${
-												isActive(pathname, to)
-													? 'bg-accent-soft text-accent'
-													: 'text-ink-muted hover:bg-accent-soft/60'
-											}`}
-											aria-current={isActive(pathname, to) ? 'page' : undefined}
-											onClick={() => setOpen(false)}
-										>
-											{label}
-										</Link>
-									</li>
-								))}
-							</ul>
-							<Link
-								to="/contacto"
-								className="mt-2 flex w-full justify-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white"
-								onClick={() => setOpen(false)}
-							>
-								Solicitar cotización
-							</Link>
-						</div>
-					)}
-				</div>
-			</div>
-		</header>
-	);
+  const handleNavClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+      }`}
+    >
+      <nav className="container-max section-padding py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">V</span>
+            </div>
+            <span className="font-bold text-xl hidden sm:inline text-gray-900">VisualBoost</span>
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex items-center gap-4">
+            <a
+              href="/contacto"
+              className="hidden sm:block btn-primary"
+            >
+              Cotizar
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden mt-4 pb-4 border-t border-gray-200">
+            <div className="flex flex-col gap-4 mt-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleNavClick}
+                  className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a href="/contacto" className="btn-primary text-center" onClick={handleNavClick}>
+                Cotizar
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
 }

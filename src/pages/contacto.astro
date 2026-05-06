@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import ContactForm from '../components/ContactForm';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Contacto - VisualBoost">
+  <Header client:load />
+  
+  <main>
+    {/* Hero */}
+    <div class="pt-32 pb-8 bg-gradient-to-b from-primary-50 to-white">
+      <div class="container-max section-padding py-8">
+        <h1 class="heading-xl mb-4 text-center">Contacto</h1>
+        <p class="text-muted text-lg text-center max-w-2xl mx-auto">
+          ¿Listo para llevar tu negocio al siguiente nivel? Nos encantaría hablar contigo.
+        </p>
+      </div>
+    </div>
+
+    <ContactForm client:load />
+  </main>
+
+  <Footer client:load />
+</BaseLayout>

@@ -1,35 +1,51 @@
-@import "tailwindcss";
-
-@import "@fontsource/dm-sans/400.css";
-@import "@fontsource/dm-sans/500.css";
-@import "@fontsource/dm-sans/600.css";
-@import "@fontsource/dm-sans/700.css";
-
-@theme {
-	--font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-
-	--color-surface: #fafaf8;
-	--color-surface-elevated: #ffffff;
-	--color-ink: #142018;
-	--color-ink-muted: #3d4a42;
-	--color-accent: #0f4d44;
-	--color-accent-hover: #0a3630;
-	--color-accent-soft: #e8f2f0;
-	--color-border: #e2e8e4;
-
-	--shadow-soft: 0 1px 3px rgb(20 32 24 / 0.06), 0 8px 24px rgb(20 32 24 / 0.06);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-	html {
-		scroll-behavior: smooth;
-	}
+  html {
+    @apply scroll-smooth;
+  }
 
-	body {
-		@apply bg-surface text-ink font-sans antialiased text-base leading-relaxed;
-	}
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
 
-	:focus-visible {
-		@apply outline-2 outline-offset-2 outline-accent;
-	}
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-gray-100 text-gray-900 font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300;
+  }
+
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900;
+  }
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900;
+  }
+
+  .heading-md {
+    @apply text-2xl sm:text-3xl font-bold text-gray-900;
+  }
+
+  .heading-sm {
+    @apply text-xl sm:text-2xl font-bold text-gray-900;
+  }
+
+  .text-muted {
+    @apply text-gray-600;
+  }
 }

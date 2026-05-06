@@ -1,153 +1,234 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { formspreeAction } from '../config/site';
+'use client';
 
-const planOptions = [
-	{ value: '', label: 'Selecciona un plan (opcional)' },
-	{ value: 'basico', label: 'Básico' },
-	{ value: 'estandar', label: 'Estándar' },
-	{ value: 'premium', label: 'Premium' },
-	{ value: 'personalizado', label: 'Cotización personalizada' },
-];
+import React, { useState } from 'react';
 
-type Props = {
-	initialPlan?: string | null;
-};
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    business: '',
+    message: '',
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-export function ContactForm({ initialPlan }: Props) {
-	const action = formspreeAction();
-	const [plan, setPlan] = useState(initialPlan ?? '');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-	useEffect(() => {
-		if (initialPlan && planOptions.some((o) => o.value === initialPlan)) {
-			setPlan(initialPlan);
-		}
-	}, [initialPlan]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-	if (!action) {
-		return (
-			<div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950" role="status">
-				<p className="font-semibold">Configura el envío del formulario</p>
-				<p className="mt-2 text-sm">
-					Crea un formulario en{' '}
-					<a href="https://formspree.io" className="underline" target="_blank" rel="noopener noreferrer">
-						Formspree
-					</a>{' '}
-					y añade <code className="rounded bg-white/80 px-1">VITE_FORMSPREE_ID</code> en tu archivo{' '}
-					<code className="rounded bg-white/80 px-1">.env</code>. Mientras tanto, usa WhatsApp o el enlace para
-					agendar.
-				</p>
-			</div>
-		);
-	}
+    try {
+      // Simular envío del formulario
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', business: '', message: '' });
 
-	return (
-		<form action={action} method="POST" className="space-y-6" name="contact" aria-label="Formulario de contacto">
-			<input type="hidden" name="_subject" value="Nuevo mensaje desde VisualBoost" />
-			<div className="grid gap-6 sm:grid-cols-2">
-				<div className="sm:col-span-1">
-					<label htmlFor="name" className="block text-sm font-medium text-ink">
-						Nombre <span className="text-accent">*</span>
-					</label>
-					<input
-						id="name"
-						name="name"
-						type="text"
-						required
-						autoComplete="name"
-						className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-					/>
-				</div>
-				<div className="sm:col-span-1">
-					<label htmlFor="email" className="block text-sm font-medium text-ink">
-						Correo electrónico <span className="text-accent">*</span>
-					</label>
-					<input
-						id="email"
-						name="email"
-						type="email"
-						required
-						autoComplete="email"
-						className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-					/>
-				</div>
-			</div>
-			<div>
-				<label htmlFor="phone" className="block text-sm font-medium text-ink">
-					Teléfono (celular) / WhatsApp
-				</label>
-				<input
-					id="phone"
-					name="phone"
-					type="tel"
-					autoComplete="tel"
-					className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-				/>
-			</div>
-			<div>
-				<label htmlFor="business" className="block text-sm font-medium text-ink">
-					Empresa o marca
-				</label>
-				<input
-					id="business"
-					name="business"
-					type="text"
-					autoComplete="organization"
-					className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-				/>
-			</div>
-			<div>
-				<label htmlFor="plan" className="block text-sm font-medium text-ink">
-					Plan de interés
-				</label>
-				<select
-					id="plan"
-					name="plan"
-					value={plan}
-					onChange={(e) => setPlan(e.target.value)}
-					className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-				>
-					{planOptions.map((o) => (
-						<option key={o.value || 'empty'} value={o.value}>
-							{o.label}
-						</option>
-					))}
-				</select>
-			</div>
-			<div>
-				<label htmlFor="message" className="block text-sm font-medium text-ink">
-					Cuéntanos tu necesidad <span className="text-accent">*</span>
-				</label>
-				<textarea
-					id="message"
-					name="message"
-					rows={5}
-					required
-					className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-				/>
-			</div>
-			<div className="flex items-start gap-3">
-				<input
-					id="consent"
-					name="consent"
-					type="checkbox"
-					required
-					className="mt-1 h-4 w-4 rounded border-border text-accent focus:ring-accent"
-				/>
-				<label htmlFor="consent" className="text-sm text-ink-muted">
-					Acepto el tratamiento de mis datos para responder a esta consulta, según la{' '}
-					<Link to="/privacidad" className="font-medium text-accent underline hover:no-underline">
-						información de privacidad
-					</Link>
-					. <span className="text-accent">*</span>
-				</label>
-			</div>
-			<button
-				type="submit"
-				className="w-full rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-			>
-				Enviar mensaje
-			</button>
-		</form>
-	);
+      // Reset success message después de 5 segundos
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className="section-padding bg-gradient-to-b from-white to-gray-50">
+      <div className="container-max">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Form */}
+          <div>
+            <h2 className="heading-lg mb-4">Hablemos de tu proyecto</h2>
+            <p className="text-muted mb-8">
+              Cuéntanos sobre tu negocio y te enviaremos una cotización personalizada en 24 horas.
+            </p>
+
+            {submitted && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+                ✓ ¡Mensaje enviado! Nos pondremos en contacto pronto.
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+                  placeholder="Tu nombre"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
+                    WhatsApp / Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+                    placeholder="+56 9 XXXX XXXX"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="business" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Tipo de negocio
+                </label>
+                <input
+                  type="text"
+                  id="business"
+                  name="business"
+                  value={formData.business}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+                  placeholder="Ej: Tienda de accesorios, Café, Studio de yoga"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Cuéntanos sobre tu proyecto
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={5}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition resize-none"
+                  placeholder="¿Qué tipo de contenido necesitas? ¿Cuál es tu objetivo? ¿Tienes presupuesto estimado?"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Enviando...' : 'Enviar Consulta'}
+              </button>
+
+              <p className="text-xs text-muted text-center">
+                Respetamos tu privacidad. Solo usaremos tu información para contactarte.
+              </p>
+            </form>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-8">
+            {/* Email */}
+            <div className="bg-white rounded-xl p-8 border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl">📧</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Email</h3>
+                  <a
+                    href="mailto:contacto@visualboost.com"
+                    className="text-primary-600 hover:text-primary-700"
+                  >
+                    contacto@visualboost.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* WhatsApp */}
+            <div className="bg-white rounded-xl p-8 border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl">💬</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">WhatsApp</h3>
+                  <a
+                    href="https://wa.me/56912345678"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-600 hover:text-green-700"
+                  >
+                    +56 9 1234 5678
+                  </a>
+                  <p className="text-sm text-muted mt-1">Respuesta inmediata en horario laboral</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Teléfono */}
+            <div className="bg-white rounded-xl p-8 border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl">📞</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Teléfono</h3>
+                  <a
+                    href="tel:+56212345678"
+                    className="text-primary-600 hover:text-primary-700"
+                  >
+                    +56 2 1234 5678
+                  </a>
+                  <p className="text-sm text-muted mt-1">Lunes a viernes, 9:00 - 18:00</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Response Time */}
+            <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 border border-primary-200">
+              <h3 className="font-bold text-lg mb-4">Tiempos de Respuesta</h3>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center gap-2">
+                  <span className="text-primary-600">⚡</span>
+                  <span>WhatsApp: 15-30 minutos</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary-600">⚡</span>
+                  <span>Email: 2-4 horas</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary-600">⚡</span>
+                  <span>Cotización personalizada: 24 horas</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

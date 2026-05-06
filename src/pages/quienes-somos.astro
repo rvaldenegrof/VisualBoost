@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Quiénes Somos - VisualBoost">
+  <Header client:load />
+  
+  <main>
+    {/* Hero */}
+    <div class="pt-32 pb-16 bg-gradient-to-b from-primary-50 to-white">
+      <div class="container-max section-padding">
+        <h1 class="heading-xl mb-4 text-center">Quiénes Somos</h1>
+        <p class="text-muted text-lg text-center max-w-2xl mx-auto">
+          Conoce el equipo detrás de VisualBoost
+        </p>
+      </div>
+    </div>
+
+    {/* Story */}
+    <section class="section-padding">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <h2 class="heading-lg mb-6">Nuestra Historia</h2>
+            <div class="space-y-4 text-muted leading-relaxed">
+              <p>
+                VisualBoost nació de una fruración común: vimos a cientos de emprendedores con excelentes productos que no vendían en redes sociales, no porque el producto fuera malo, sino porque la presentación visual no era profesional.
+              </p>
+              <p>
+                Decidimos crear una agencia especializada en contenido visual para pymes. No queremos ser la más grande, queremos ser la más efectiva para nuestro nicho.
+              </p>
+              <p>
+                Cada día trabajamos para que emprendedores como tú vendan más a través de contenido visual estratégico, no solo estético.
+              </p>
+            </div>
+          </div>
+          <div class="relative h-80 bg-gradient-to-br from-primary-200 to-accent-200 rounded-2xl flex items-center justify-center">
+            <span class="text-6xl">🚀</span>
+          </div>
+        </div>
+
+        {/* Values */}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-b border-gray-200">
+          <div class="text-center">
+            <div class="text-5xl mb-4">🎯</div>
+            <h3 class="heading-sm mb-2">Resultado Enfocado</h3>
+            <p class="text-muted">No medimos éxito por visitas, sino por ventas reales de nuestros clientes.</p>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl mb-4">⚡</div>
+            <h3 class="heading-sm mb-2">Rapidez & Calidad</h3>
+            <p class="text-muted">Entregas en 48-72 horas sin sacrificar la excelencia profesional.</p>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl mb-4">💜</div>
+            <h3 class="heading-sm mb-2">Pasión por Emprendedores</h3>
+            <p class="text-muted">Entendemos los desafíos de crecer un negocio desde cero.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Team Section */}
+    <section class="section-padding bg-gray-50">
+      <div class="container-max">
+        <h2 class="heading-lg text-center mb-12">Nuestro Equipo</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <div class="bg-white rounded-xl p-6 text-center border border-gray-200">
+              <div class="w-24 h-24 bg-gradient-to-br from-primary-200 to-accent-200 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">
+                👤
+              </div>
+              <h3 class="heading-sm mb-2">Especialista {i}</h3>
+              <p class="text-primary-600 font-semibold mb-2">Fotografía</p>
+              <p class="text-muted text-sm">Profesional dedicado a capturar la esencia de tu marca.</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Why Choose Us */}
+    <section class="section-padding">
+      <div class="container-max">
+        <h2 class="heading-lg text-center mb-12">Por qué elegir VisualBoost</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="flex gap-4">
+            <span class="text-3xl flex-shrink-0">⭐</span>
+            <div>
+              <h3 class="font-bold mb-2">Enfoque en Ventas</h3>
+              <p class="text-muted">Cada pieza de contenido está diseñada para convertir visitantes en clientes.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <span class="text-3xl flex-shrink-0">🚀</span>
+            <div>
+              <h3 class="font-bold mb-2">Entregas Rápidas</h3>
+              <p class="text-muted">48-72 horas desde la sesión de contenido al material listo para publicar.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <span class="text-3xl flex-shrink-0">💰</span>
+            <div>
+              <h3 class="font-bold mb-2">Precios Accesibles</h3>
+              <p class="text-muted">Servicios profesionales sin el costo de agencias grandes.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <span class="text-3xl flex-shrink-0">🤝</span>
+            <div>
+              <h3 class="font-bold mb-2">Soporte Dedicado</h3>
+              <p class="text-muted">Tu equipo de VisualBoost siempre disponible para ayudarte.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section class="section-padding bg-gradient-to-r from-primary-600 to-accent-500 text-white">
+      <div class="container-max text-center">
+        <h2 class="text-4xl font-bold mb-4">¿Listo para crecer?</h2>
+        <p class="text-xl mb-8 text-primary-100">
+          Solicita tu consulta gratuita hoy y descubre cómo podemos ayudarte
+        </p>
+        <a href="/contacto" class="inline-block px-8 py-4 bg-white text-primary-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+          Agendar Consulta
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</BaseLayout>

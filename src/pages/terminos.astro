@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Términos y Condiciones - VisualBoost">
+  <Header client:load />
+  
+  <main>
+    <div class="pt-32 section-padding">
+      <div class="container-max max-w-3xl">
+        <h1 class="heading-lg mb-8">Términos y Condiciones</h1>
+        
+        <div class="prose prose-sm max-w-none">
+          <h2 class="heading-md mt-8 mb-4">1. Aceptación de Términos</h2>
+          <p class="text-muted mb-4">
+            Al acceder y utilizar este sitio web, aceptas estar vinculado por estos términos y condiciones. Si no estás de acuerdo con alguno de estos términos, no debes utilizar este sitio.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">2. Licencia de Uso</h2>
+          <p class="text-muted mb-4">
+            Se te concede una licencia limitada, no exclusiva y revocable para acceder y usar este sitio web únicamente para propósitos legítimos.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">3. Servicios</h2>
+          <p class="text-muted mb-4">
+            Los servicios de VisualBoost se proporcionan "tal como están". Nos reservamos el derecho de cambiar, modificar o discontinuar cualquier servicio en cualquier momento.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">4. Planes y Pagos</h2>
+          <ul class="list-disc list-inside text-muted space-y-2 mb-4">
+            <li>Los planes son mensuales y renovables</li>
+            <li>Puedes cambiar o cancelar tu plan en cualquier momento</li>
+            <li>Los pagos se procesan de forma segura</li>
+            <li>No hay contratos de larga duración vinculantes</li>
+          </ul>
+
+          <h2 class="heading-md mt-8 mb-4">5. Limitación de Responsabilidad</h2>
+          <p class="text-muted mb-4">
+            En ningún caso VisualBoost será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos resultantes del uso o la imposibilidad de usar nuestros servicios.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">6. Derechos de Propiedad Intelectual</h2>
+          <p class="text-muted mb-4">
+            Todo el contenido del sitio, incluyendo pero no limitado a texto, gráficos, logotipos, imágenes y software, es propiedad de VisualBoost o sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">7. Cambios a los Términos</h2>
+          <p class="text-muted mb-4">
+            Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio.
+          </p>
+
+          <h2 class="heading-md mt-8 mb-4">8. Contacto</h2>
+          <p class="text-muted">
+            Si tienes preguntas sobre estos términos, contacta a contacto@visualboost.com
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load />
+</BaseLayout>
