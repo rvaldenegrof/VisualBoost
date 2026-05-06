@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-hidden="true">
+  <rect width="800" height="1000" fill="#f0f4f3"/>
+  <rect x="180" y="240" width="440" height="180" rx="20" fill="#ffffff" stroke="#0f4d44" stroke-opacity="0.2"/>
+  <rect x="220" y="460" width="360" height="100" rx="16" fill="#0f4d44" opacity="0.15"/>
+  <text x="400" y="820" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#0f4d44">Edición · stories</text>
+</svg>
