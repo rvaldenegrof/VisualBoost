@@ -12,4 +12,5 @@ dist/
 *.swp
 *.swo
 *~
-.env
+.en
+.gitignore
