@@ -7,12 +7,18 @@ interface NavLink {
   href: string;
 }
 
+const basePath = import.meta.env.BASE_URL || '/';
+const normalizedBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
+
+const anchorLink = (hash: string) => `${normalizedBasePath}${hash}`;
+const pageLink = (path: string) => `${normalizedBasePath}${path.replace(/^\//, '')}`;
+
 const navLinks: NavLink[] = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Servicios', href: '/#servicios' },
-  { label: 'Portafolio', href: '/portafolio' },
-  { label: 'Quiénes Somos', href: '/quienes-somos' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'Inicio', href: normalizedBasePath },
+  { label: 'Servicios', href: anchorLink('#servicios') },
+  { label: 'Portafolio', href: pageLink('portafolio') },
+  { label: 'Quiénes Somos', href: pageLink('quienes-somos') },
+  { label: 'FAQ', href: anchorLink('#faq') },
 ];
 
 export default function Header() {
@@ -41,7 +47,7 @@ export default function Header() {
       <nav className="container-max section-padding py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <a href={normalizedBasePath} className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">V</span>
             </div>
@@ -64,7 +70,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="flex items-center gap-4">
             <a
-              href="/contacto"
+              href={pageLink('contacto')}
               className="hidden sm:block btn-primary"
             >
               Cotizar
@@ -107,7 +113,7 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
-              <a href="/contacto" className="btn-primary text-center" onClick={handleNavClick}>
+              <a href={pageLink('contacto')} className="btn-primary text-center" onClick={handleNavClick}>
                 Cotizar
               </a>
             </div>
