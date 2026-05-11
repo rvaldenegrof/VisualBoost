@@ -31,11 +31,11 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a href="/contacto" className="btn-primary text-center">
+              <a href="contacto" className="btn-primary text-center">
                 Solicitar Cotización
               </a>
               <a
-                href="/#planes"
+                href={('#planes')}
                 className="btn-secondary text-center"
               >
                 Ver Planes →

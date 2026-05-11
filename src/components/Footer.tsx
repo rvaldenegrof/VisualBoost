@@ -1,19 +1,25 @@
 import React from 'react';
 
+const basePath = import.meta.env.BASE_URL || '/';
+const normalizedBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
+
+const anchorLink = (hash: string) => `${normalizedBasePath}${hash}`;
+const pageLink = (path: string) => `${normalizedBasePath}${path.replace(/^\//, '')}`;
+
 const footerLinks = {
   product: [
-    { label: 'Servicios', href: '/#servicios' },
-    { label: 'Planes', href: '/#planes' },
-    { label: 'Portafolio', href: '/portafolio' },
+    { label: 'Servicios', href:anchorLink('#servicios') },
+    { label: 'Planes', href: anchorLink('#planes') },
+    { label: 'Portafolio', href: ('portafolio') },
   ],
   company: [
-    { label: 'Quiénes Somos', href: '/quienes-somos' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Contacto', href: '/contacto' },
+    { label: 'Quiénes Somos', href: pageLink('quienes-somos') },
+    { label: 'Blog', href: pageLink('blog') },
+    { label: 'Contacto', href: pageLink('contacto')},
   ],
   legal: [
-    { label: 'Privacidad', href: '/privacidad' },
-    { label: 'Términos', href: '/terminos' },
+    { label: 'Privacidad', href: pageLink('privacidad') },
+    { label: 'Términos', href: pageLink('terminos') },
   ],
   social: [
     { label: 'Instagram', href: 'https://instagram.com', icon: '📷' },

@@ -14,3 +14,13 @@ dist/
 *~
 .en
 .gitignore
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/tests/
+/specs/
+/e2e/
