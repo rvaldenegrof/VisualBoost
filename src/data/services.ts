@@ -135,7 +135,7 @@ export const PORTFOLIO_ITEMS = [
     category: 'ecommerce',
     title: 'Aumento de ventas 240%',
     description: 'Tienda de accesorios femeninos',
-    image: '/portfolio/1.jpg',
+    image: '/portfolio/cm/cm_01.jpg',
     tags: ['Fotos Producto', 'Reels', 'Edición'],
   },
   {
@@ -143,7 +143,7 @@ export const PORTFOLIO_ITEMS = [
     category: 'local-business',
     title: 'Café artesanal con viralidad',
     description: 'Contenido lifestyle y ambiente',
-    image: '/portfolio/2.jpg',
+    image: '/portfolio/cafe-artesanal.jpg',
     tags: ['Lifestyle', 'Reels', 'Edición'],
   },
   {
@@ -151,7 +151,7 @@ export const PORTFOLIO_ITEMS = [
     category: 'services',
     title: 'Studio de yoga - 150 clientes nuevos',
     description: 'Transformación visual en 2 meses',
-    image: '/portfolio/3.jpg',
+    image: '/portfolio/studio-yoga.jpg',
     tags: ['Fotos', 'Reels', 'Estrategia'],
   },
   {
@@ -159,8 +159,24 @@ export const PORTFOLIO_ITEMS = [
     category: 'handmade',
     title: 'Emprendimiento de cerámica',
     description: 'De 0 a 5K seguidores en 3 meses',
-    image: '/portfolio/4.jpg',
+    image: '/portfolio/ceramica-artesanal.jpg',
     tags: ['Producto', 'Lifestyle', 'Reels'],
+  },
+  {
+    id: 5,
+    category: 'ecommerce',
+    title: 'Tienda de cosméticos naturales',
+    description: 'Crecimiento orgánico del 180%',
+    image: '/portfolio/cosmeticos-naturales.jpg',
+    tags: ['Producto', 'Lifestyle', 'Reels'],
+  },
+  {
+    id: 6,
+    category: 'local-business',
+    title: 'Restaurante familiar',
+    description: 'Duplicación de reservas en redes',
+    image: '/portfolio/restaurante-familiar.jpg',
+    tags: ['Lifestyle', 'Reels', 'Edición'],
   },
 ];
 
