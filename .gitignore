@@ -24,3 +24,5 @@ dist/
 /tests/
 /specs/
 /e2e/
+.github/workflows/playwright.yml
+.github/workflows/copilot-setup-steps.yml
