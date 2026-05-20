@@ -15,7 +15,7 @@ export default function FAQ({ items }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+    <section id="faq" className="section-padding bg-gradient-to-b from-gray-50 to-white">
       <div className="container-max">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
