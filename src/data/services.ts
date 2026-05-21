@@ -141,43 +141,51 @@ export const PORTFOLIO_ITEMS = [
   {
     id: 2,
     category: 'local-business',
-    title: 'Café artesanal con viralidad',
-    description: 'Contenido lifestyle y ambiente',
-    image: '/portfolio/cafe-artesanal.jpg',
+    title: 'Cola de Mono - Navideño Vol. 1',
+    description: 'Contenido lifestyle y ambiente festivo',
+    image: '/portfolio/cm/cola de mono navideño-3.jpg',
     tags: ['Lifestyle', 'Reels', 'Edición'],
   },
   {
     id: 3,
     category: 'services',
-    title: 'Studio de yoga - 150 clientes nuevos',
+    title: 'Sesión Fotográfica',
     description: 'Transformación visual en 2 meses',
-    image: '/portfolio/studio-yoga.jpg',
+    image: '/portfolio/cm/IMG_20250319_203945.jpg',
     tags: ['Fotos', 'Reels', 'Estrategia'],
   },
   {
     id: 4,
     category: 'handmade',
-    title: 'Emprendimiento de cerámica',
+    title: 'Cola de Mono - Navideño Vol. 2',
     description: 'De 0 a 5K seguidores en 3 meses',
-    image: '/portfolio/ceramica-artesanal.jpg',
+    image: '/portfolio/cm/cola de mono navideño-4.jpg',
     tags: ['Producto', 'Lifestyle', 'Reels'],
   },
   {
     id: 5,
     category: 'ecommerce',
-    title: 'Tienda de cosméticos naturales',
+    title: 'Sesión Fotográfica Premium',
     description: 'Crecimiento orgánico del 180%',
-    image: '/portfolio/cosmeticos-naturales.jpg',
+    image: '/portfolio/cm/IMG_20250319_203950.jpg',
     tags: ['Producto', 'Lifestyle', 'Reels'],
   },
   {
     id: 6,
     category: 'local-business',
-    title: 'Restaurante familiar',
+    title: 'Proyecto en Progreso',
     description: 'Duplicación de reservas en redes',
-    image: '/portfolio/restaurante-familiar.jpg',
+    image: '/portfolio/cm/por subir.jpg',
     tags: ['Lifestyle', 'Reels', 'Edición'],
   },
+  {
+  id: 7,                                    // ID único (incrementar)
+  category: 'local-business',               // Una de: ecommerce, local-business, services, handmade
+  title: 'Cola de Mono',
+  description: '“Entre Tazas y Tradición” - Cola de Mono con historia y sabor único',
+  image: '/portfolio/cm/cm_01.jpg',          // Ruta desde public/
+  tags: ['Fotos Producto', 'Reels', 'Edición'],
+}
 ];
 
 export const TESTIMONIALS = [
