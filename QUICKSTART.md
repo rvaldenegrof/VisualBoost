@@ -68,7 +68,6 @@ vercel
 - [ ] Todo se ve bien en móvil
 - [ ] Links internos funcionan
 - [ ] Formulario responde
-- [ ] Build completa sin errores
 
 ## 📚 Siguiente Lectura
 
