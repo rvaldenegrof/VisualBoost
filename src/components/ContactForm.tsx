@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+const FORMSPREE_ENDPOINT = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT as string | undefined;
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,6 +13,7 @@ export default function ContactForm() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -21,17 +24,36 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+
+    if (!FORMSPREE_ENDPOINT) {
+      setError('El formulario aún no está configurado. Contáctanos directamente por email o WhatsApp.');
+      setLoading(false);
+      return;
+    }
 
     try {
-      // Simular envío del formulario
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          nombre: formData.name,
+          email: formData.email,
+          telefono: formData.phone,
+          negocio: formData.business,
+          mensaje: formData.message,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Error al enviar');
+      }
+
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', business: '', message: '' });
-
-      // Reset success message después de 5 segundos
       setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
+    } catch {
+      setError('Hubo un problema al enviar. Por favor contáctanos directamente por email o WhatsApp.');
     } finally {
       setLoading(false);
     }
@@ -50,7 +72,13 @@ export default function ContactForm() {
 
             {submitted && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-                ✓ ¡Mensaje enviado! Nos pondremos en contacto pronto.
+                ✓ ¡Mensaje enviado! Nos pondremos en contacto en menos de 24 horas.
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                {error}
               </div>
             )}
 
