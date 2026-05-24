@@ -36,7 +36,7 @@ export default defineConfig({
 
   webServer: {
     command: process.env.CI ? 'npm run preview' : 'npm run dev',
-    url: 'http://localhost:4321',
+    url: 'http://localhost:4322',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
   },
