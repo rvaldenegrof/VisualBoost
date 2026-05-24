@@ -12,8 +12,7 @@ dist/
 *.swp
 *.swo
 *~
-.en
-.gitignore
+.env
 
 # Playwright
 /test-results/
