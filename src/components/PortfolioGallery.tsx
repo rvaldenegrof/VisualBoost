@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import PortfolioLightbox from './PortfolioLightbox';
 
 interface Portfolio {
   id: number;
   category: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   tags: string[];
 }
 
@@ -22,8 +23,12 @@ interface PortfolioGalleryProps {
   categories: Category[];
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const imgUrl = (path: string) => `${base}${path}`;
+
 export default function PortfolioGallery({ items, categories }: PortfolioGalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [activeLightbox, setActiveLightbox] = useState<Portfolio | null>(null);
 
   const filteredItems =
     selectedCategory === 'all' ? items : items.filter((item) => item.category === selectedCategory);
@@ -34,7 +39,7 @@ export default function PortfolioGallery({ items, categories }: PortfolioGallery
         <div className="text-center mb-12">
           <h2 className="heading-lg mb-4">Nuestro Portafolio</h2>
           <p className="text-muted text-lg">
-            Casos de éxito de clientes que han crecido significativamente con nuestro contenido
+            Explora nuestros trabajos — haz clic en cualquier proyecto para ver la galería completa
           </p>
         </div>
 
@@ -70,12 +75,27 @@ export default function PortfolioGallery({ items, categories }: PortfolioGallery
           {filteredItems.map((item) => (
             <div
               key={item.id}
+              onClick={() => setActiveLightbox(item)}
               className="group bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
             >
-              {/* Image */}
+              {/* Cover image */}
               <div className="relative overflow-hidden bg-gray-100 h-64">
-                <div className="w-full h-full bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-6xl">📸</span>
+                <img
+                  src={imgUrl(item.images[0])}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Photo count badge */}
+                <div className="absolute top-3 right-3 bg-black/60 text-white text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                  {item.images.length} fotos
+                </div>
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                    Ver galería →
+                  </span>
                 </div>
               </div>
 
@@ -110,6 +130,14 @@ export default function PortfolioGallery({ items, categories }: PortfolioGallery
           </a>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {activeLightbox && (
+        <PortfolioLightbox
+          item={activeLightbox}
+          onClose={() => setActiveLightbox(null)}
+        />
+      )}
     </section>
   );
 }
